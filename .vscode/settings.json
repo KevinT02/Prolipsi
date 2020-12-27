@@ -1,4 +1,9 @@
 {
-    "python.pythonPath": "C:\\Users\\tu02_\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
-    "jupyter.jupyterServerType": "local"
+    "python.pythonPath": "C:\\Users\\tu02_\\OneDrive\\Documents\\Covid ID\\Prolipsi\\mypython",
+    "jupyter.jupyterServerType": "local",
+    "json.schemas": [
+
+        
+    
+    ]
 }
