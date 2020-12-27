@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/KevinT02/Covid-Identifier/blob/main/logo.png">
+  <img src="https://github.com/KevinT02/Prolipsi/blob/main/mysite/templates/logo.png">
 </p>
 
 
