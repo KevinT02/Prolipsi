@@ -12,8 +12,8 @@ def covidTest(filePath):
     train = ImageDataGenerator(rescale= 1/255)
     validation = ImageDataGenerator(rescale= 1/255)
 
-    train_dataset = train.flow_from_directory('Images/train_dataset', target_size= (200,200), batch_size = 500, class_mode = 'binary')
-    validation_dataset = validation.flow_from_directory('Images/validation', target_size= (200,200), batch_size = 500, class_mode = 'binary')
+    train_dataset = train.flow_from_directory('Images/train_dataset', target_size= (200,200), batch_size = 3, class_mode = 'binary')
+    validation_dataset = validation.flow_from_directory('Images/validation', target_size= (200,200), batch_size = 3, class_mode = 'binary')
 
     model = tf.keras.models.Sequential([ tf.keras.layers.Conv2D(16,(3,3), activation = 'relu', input_shape = (200,200,3)), 
     tf.keras.layers.MaxPool2D(2,2), 
@@ -23,7 +23,7 @@ def covidTest(filePath):
 
     model.compile(loss='binary_crossentropy', optimizer = RMSprop(lr=0.001), metrics = ['accuracy'])
 
-    model_fit=model.fit(train_dataset, steps_per_epoch = 250, epochs= 10, validation_data = validation_dataset)
+    model_fit=model.fit(train_dataset, steps_per_epoch = 3, epochs= 10, validation_data = validation_dataset)
 
     print(validation_dataset.class_indices)
 
