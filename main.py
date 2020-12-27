@@ -7,7 +7,7 @@ import numpy as np
 import cv2
 import os
 
-def createModel():
+def createModel(filePath):
 
     train = ImageDataGenerator(rescale= 1/255)
     validation = ImageDataGenerator(rescale= 1/255)
@@ -26,48 +26,45 @@ def createModel():
     model_fit=model.fit(train_dataset, steps_per_epoch = 50, epochs= 100, validation_data = validation_dataset)
 
     print(validation_dataset.class_indices)
-    return(model_fit, model)
-
-covid = createModel()
-
-#Visualize the models accuracy
-plt.plot(covid[0].history['accuracy'])
-plt.plot(covid[0].history['val_accuracy'])
-plt.title('Model Accuracy')
-plt.ylabel('Accuracy')
-plt.xlabel('Epoch')
-plt.legend(['Train', ' Val'], loc='upper left')
-plt.savefig('plotimage/accuracy.png')
-
-os.remove('plotimage/accuracy.png')
 
 
-# #Visualize the models loss
-# plt.plot(model_fit.history['loss'])
-# plt.plot(model_fit.history['val_loss'])
-# plt.title('Model Loss')
-# plt.ylabel('Loss')
-# plt.xlabel('Epoch')
-# plt.legend(['Train', ' Val'], loc='upper right')
-# plt.show()
+    #Visualize the models accuracy
+    plt.plot(model_fit.history['accuracy'])
+    plt.plot(model_fit.history['val_accuracy'])
+    plt.title('Model Accuracy')
+    plt.ylabel('Accuracy')
+    plt.xlabel('Epoch')
+    plt.legend(['Train', ' Val'], loc='upper left')
+    plt.savefig('plotimage/accuracy.png')
 
- 
-# dir_path = 'Images/test_dataset'
 
-# for i in os.listdir(dir_path):
-#     img = image.load_img(dir_path+ '//' + i, target_size=(200,200))
-#     print(i)
-#     plt.imshow(img)
-#     plt.show()
 
-#     X = image.img_to_array(img)
-#     X = np.expand_dims(X,axis =0)
-#     images =np.vstack([X])
-#     val = model.predict(images)
+    #Visualize the models loss
+    plt.plot(model_fit.history['loss'])
+    plt.plot(model_fit.history['val_loss'])
+    plt.title('Model Loss')
+    plt.ylabel('Loss')
+    plt.xlabel('Epoch')
+    plt.legend(['Train', ' Val'], loc='upper right')
+    plt.show()
 
-#     if val == 0:
-#         print("Covid Positive")
-#     else: 
-#         print("Covid Negative")
+    
+    dir_path = filePath
+
+    for i in os.listdir(dir_path):
+        img = image.load_img(dir_path+ '//' + i, target_size=(200,200))
+        print(i)
+        plt.imshow(img)
+        plt.show()
+
+        X = image.img_to_array(img)
+        X = np.expand_dims(X,axis =0)
+        images =np.vstack([X])
+        val = model.predict(images)
+
+        if val == 0:
+            return str(Covid Positive)
+        else: 
+            return str(Covid Negative)
 
 
